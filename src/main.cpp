@@ -38,13 +38,13 @@ while (1) {
         output[0] = 0;
     }
     if (ledst==1){
-        led=1;
+        output[0]=4000;
     }else{
-        led=0;
+        output[0]=0;
     }
     CANMessage msg(1, (const uint8_t *)output, 8);
     can1.write(msg);
-    servoController.run(deg,3);
+
 }
 
 }
