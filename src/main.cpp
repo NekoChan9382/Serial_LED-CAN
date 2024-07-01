@@ -26,7 +26,7 @@ while (1) {
     if(data=='5'){
         output[0] = 4000;
     } else if(data=='4'){
-        output[0] = -4000;
+        output[0] = -2000;
     }else if (data == '7') {
         ledst=1;
     
