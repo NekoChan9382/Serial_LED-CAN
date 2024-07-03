@@ -19,7 +19,7 @@ class Serials:
         self.read=tk.Button(master,text="受信",command=self.ser_read)
         self.read.pack()
 
-        self.keypressed=False
+        self.keys=[]
 
         master.bind("<KeyPress>",self.key_press)
         master.bind("<KeyRelease>",self.key_release)
@@ -28,19 +28,17 @@ class Serials:
         self.ser.write(send.encode())
 
     def key_press(self,event):
-        if not self.keypressed:
-            self.keypressed=True
+
+        if event.keysym not in self.keys:
+            self.keys.append(event.keysym)
             send=event.keysym+"\0"
             self.ser.write(send.encode())
 
     def key_release(self,event):
-        self.keypressed=False
-        self.ser.write(b"0\0")
 
-    def key_send(self,event):
-        if self.keypressed:
-            self.ser.write(self.key_now.encode())
-        self.master.after(100,self.key_send)
+        send=event.keysym+"0\0"
+        self.keys.remove(event.keysym)
+        self.ser.write(send.encode())
 
     def ser_read(self):
         self.read.config(text=self.ser.readline())

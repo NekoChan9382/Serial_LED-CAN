@@ -31,7 +31,7 @@ int main()
                 {
                     break;
                 }
-                serial.write(&data, sizeof(data));
+                //serial.write(&data, sizeof(data));
             }
             // serial.write("wi",sizeof("wi"));
             if (strcmp(data, "10\0") == 0)
