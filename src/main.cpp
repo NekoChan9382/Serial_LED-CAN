@@ -16,8 +16,8 @@ int main()
         char buff;
         char data[5];
         // int deg;
-        int CAN_ws;
-        int CAN_ad;
+        int8_t CAN_Send;
+
 
         if (serial.readable())
         {
@@ -44,38 +44,38 @@ int main()
             }
             else if (strcmp(data, "w\0") == 0)
             {
-                CAN_ws = 1;
+                CAN_Send = 1;
             }
             else if (strcmp(data, "s\0") == 0)
             {
-                CAN_ws = -1;
+                CAN_Send = -1;
             }
             else if (strcmp(data, "w0\0") == 0 or strcmp(data, "s0\0") == 0)
             {
-                CAN_ws = 0;
+                CAN_Send = 0;
             }else if (strcmp(data, "a\0") == 0)
             {
-                CAN_ad = 1;
+                CAN_Send = 1;
             }
             else if (strcmp(data, "d\0") == 0)
             {
-                CAN_ad = -1;
+                CAN_Send = -1;
             }
             else if (strcmp(data, "a0\0") == 0 or strcmp(data, "d0\0") == 0)
             {
-                CAN_ad = 0;
+                CAN_Send = 0;
             }
             else
             {
                 output[0] = 0;
             }
         }
-        if (CAN_ws == 1)
+        if (CAN_Send == 1)
         {
             output[0] = 8000;
             led = 1;
         }
-        else if (CAN_ws == -1)
+        else if (CAN_Send == -1)
         {
             output[0] = -8000;
         }
@@ -84,10 +84,10 @@ int main()
             output[0] = 0;
             led = 0;
         }
-        if (CAN_ad ==1){
+        if (CAN_Send ==1){
             output[1] = 8000;
         }
-        else if (CAN_ad == -1)
+        else if (CAN_Send == -1)
         {
             output[1] = -8000;
         }
