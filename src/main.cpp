@@ -55,15 +55,15 @@ int main()
                 CAN_Send = 0;
             }else if (strcmp(data, "a\0") == 0)
             {
-                CAN_Send = 1;
+                CAN_Send = 2;
             }
             else if (strcmp(data, "d\0") == 0)
             {
-                CAN_Send = -1;
+                CAN_Send = -2;
             }
             else if (strcmp(data, "a0\0") == 0 or strcmp(data, "d0\0") == 0)
             {
-                CAN_Send = 0;
+                CAN_Send = 3;
             }
             else
             {
@@ -79,23 +79,23 @@ int main()
         {
             output[0] = -8000;
         }
-        else
+        else if(CAN_Send == 0)
         {
             output[0] = 0;
             led = 0;
         }
-        if (CAN_Send ==1){
+        if (CAN_Send ==2){
             output[1] = 8000;
         }
-        else if (CAN_Send == -1)
+        else if (CAN_Send == -2)
         {
             output[1] = -8000;
         }
-        else
+        else if (CAN_Send == 3)
         {
             output[1] = 0;
         }
-        CANMessage msg(4, (const uint8_t *)output, 8);
+        CANMessage msg(1, (const uint8_t *)output, 8);
         can1.write(msg);
     }
 }
