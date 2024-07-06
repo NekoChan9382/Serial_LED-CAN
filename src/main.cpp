@@ -13,8 +13,7 @@ int main()
 
     while (1)
     {
-        char buff;
-        char data[5];
+        
         // int deg;
         int8_t CAN_Send;
 
@@ -22,18 +21,17 @@ int main()
         if (serial.readable())
         {
             int i = 0;
-            while (1)
+            char buff='0';
+            char data[5];
+
+            while ('buff' != '\0' and i < 5)
             {
                 serial.read(&buff, sizeof(buff));
                 data[i] = buff;
                 i++;
-                if (buff == '\0')
-                {
-                    break;
-                }
-                //serial.write(&data, sizeof(data));
+
             }
-            // serial.write("wi",sizeof("wi"));
+
             if (strcmp(data, "10\0") == 0)
             {
                 output[0] = 8000;
