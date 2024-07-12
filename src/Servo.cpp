@@ -14,11 +14,11 @@ ServoController::ServoController(CAN& can) : can(can)
 }
 
 // サーボ制御の実行
-void ServoController::run(uint8_t deg, uint8_t motor)
+void ServoController::run(uint8_t deg[8], uint8_t motor)
 {
 
       // サーボの制御データを設定
-      servo1_data[motor]=deg;
+      memcpy(servo1_data, deg, sizeof(deg));
 
       // CAN メッセージを作成し送信
       auto msg4 = CANMessage{servo_can_id, servo1_data, sizeof(servo1_data)};

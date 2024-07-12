@@ -5,11 +5,15 @@
 CAN can1(PA_11, PA_12, (int)1e6); //CAN初期化
 BufferedSerial serial(USBTX, USBRX, 115200); //シリアル初期化
 int16_t output[4] = {0, 0, 0, 0}; //CAN送信データ
+uint8_t servo_data[8]={0}; //サーボ制御用データ
+bool servo_send = false; //サーボ送信フラグ
 CANMessage msg; //CANメッセージ定義
 DigitalOut led(LED1); //LED初期化
+ServoController servoController(can1); //サーボ初期化
 
 int main()
 {
+    servoController.servo_can_id = 141; //サーボCANID設定
 
     while (1)
     {
@@ -64,6 +68,10 @@ int main()
             {
                 CAN_Send = 3;
             }
+            else if (strcmp(data, "1\0") == 0){
+                servo_data[0] = 0;
+                servo_send=true;
+            }
             else
             {
                 output[0] = 0;
@@ -96,5 +104,9 @@ int main()
         }
         CANMessage msg(4, (const uint8_t *)output, 8); //メッセージ構築
         can1.write(msg); //CAN送信
+        if (servo_send){
+            servoController.run(servo_data, 1);
+            servo_send = false;
+        }
     }
 }

@@ -10,7 +10,7 @@ public:
   ServoController(CAN& can);
   uint32_t servo_can_id;
 
-  void run(uint8_t deg, uint8_t motor);
+  void run(uint8_t deg[8], uint8_t motor);
 
 private:
   CAN& can;
