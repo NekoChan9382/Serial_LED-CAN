@@ -94,7 +94,7 @@ int main()
         {
             output[1] = 0;
         }
-        CANMessage msg(2, (const uint8_t *)output, 8); //メッセージ構築
+        CANMessage msg(4, (const uint8_t *)output, 8); //メッセージ構築
         can1.write(msg); //CAN送信
     }
 }
