@@ -24,7 +24,7 @@ int main()
             char buff='0'; //シリアル受信
             char data[5]; //受信データ保存
 
-            while ('buff' != '\0' and i < 5)
+            while (buff != '\0' and i < 5)
             {
                 serial.read(&buff, sizeof(buff)); //シリアル受信
                 data[i] = buff; //受信データ保存
@@ -94,7 +94,7 @@ int main()
         {
             output[1] = 0;
         }
-        CANMessage msg(1, (const uint8_t *)output, 8); //メッセージ構築
+        CANMessage msg(2, (const uint8_t *)output, 8); //メッセージ構築
         can1.write(msg); //CAN送信
     }
 }
