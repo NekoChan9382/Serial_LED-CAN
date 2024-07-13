@@ -17,6 +17,7 @@ int main()
 
     while (1)
     {
+        //serial.write("ebi", sizeof("ebi")); シリアル送信
         
         // int deg;
         int8_t CAN_Send; //CAN送信データ保存
@@ -69,15 +70,18 @@ int main()
                 CAN_Send = 3;
             }
             else if (strcmp(data, "1\0") == 0){
-                servo_data[0] = 0;
+                servo_data[1] = 0;
                 servo_send=true;
+                printf("Hello World!\n");
+
+
             }
             else if (strcmp(data, "2\0") == 0){
-                servo_data[0] = 255;
+                servo_data[1] = 255;
                 servo_send=true;
             }
             else if (strcmp(data, "3\0") == 0){
-                servo_data[0] = 180;
+                servo_data[1] = 128;
                 servo_send=true;
             }
             else
@@ -89,6 +93,7 @@ int main()
         {
             output[0] = 8000;
             led = 1;
+            
         }
         else if (CAN_Send == -1)
         {
