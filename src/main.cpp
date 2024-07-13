@@ -72,6 +72,14 @@ int main()
                 servo_data[0] = 0;
                 servo_send=true;
             }
+            else if (strcmp(data, "2\0") == 0){
+                servo_data[0] = 255;
+                servo_send=true;
+            }
+            else if (strcmp(data, "3\0") == 0){
+                servo_data[0] = 180;
+                servo_send=true;
+            }
             else
             {
                 output[0] = 0;
