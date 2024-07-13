@@ -9,9 +9,9 @@ class Serials:
         self.ser=serial.Serial(port,baud) #シリアル定義
         self.master=master
 
-        send1=tk.Button(master,text="1を送信",command=lambda: self.ser_send("1"))#ボタン作成
-        send2=tk.Button(master,text="2を送信",command=lambda: self.ser_send("2"))
-        send3=tk.Button(master,text="3を送信",command=lambda: self.ser_send("3"))
+        send1=tk.Button(master,text="1を送信",command=lambda: self.ser_send("1\0"))#ボタン作成
+        send2=tk.Button(master,text="2を送信",command=lambda: self.ser_send("2\0"))
+        send3=tk.Button(master,text="3を送信",command=lambda: self.ser_send("3\0"))
         send1.pack()
         send2.pack()
         send3.pack()
