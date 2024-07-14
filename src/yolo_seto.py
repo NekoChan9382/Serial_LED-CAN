@@ -5,8 +5,8 @@ import tkinter as tk
 import threading as th
 
 cam=cv2.VideoCapture(0)
-ser=serial.Serial("COM3",115200)
-model = YOLO('seto_sort\\yolodata2\\best.pt')
+ser=serial.Serial("COM3",115200,timeout=2)
+model = YOLO('src\\best.pt')
 
 Thread_stop=False
 

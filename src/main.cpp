@@ -72,17 +72,19 @@ int main()
             else if (strcmp(data, "1\0") == 0){
                 servo_data[1] = 0;
                 servo_send=true;
-                printf("Hello World!\n");
+                printf("ebi");
 
 
             }
             else if (strcmp(data, "2\0") == 0){
                 servo_data[1] = 255;
                 servo_send=true;
+                printf("nori");
             }
             else if (strcmp(data, "3\0") == 0){
                 servo_data[1] = 128;
                 servo_send=true;
+                printf("yuzu");
             }
             else
             {
